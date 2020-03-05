@@ -1,0 +1,24 @@
+<view class = "container">
+  
+  <view class="header">
+    <image src="../../image/add.png" bindtap="add"></image>
+    <input type="text" placeholder="Anything here..." value="{{ input }}" bindinput="getText" bindconfirm="add"></input>
+  </view>
+
+  <block wx:if = "{{ todos.length }}">
+    <view class="todos" >
+      <view class="item{{ item.completed ? ' completed' : '' }}" wx:for="{{ todos }}" bindtap="tagging" data-index="{{ index }}">
+        <icon type="{{ item.completed ? 'success' : 'circle' }}"></icon>
+        <text>{{ item.name }}</text>
+        <icon type="clear" size="20" catchtap="remove" data-index="{{ index }}"></icon>
+      </view>
+    </view>
+
+    <view class="footer">
+      <text bindtap="toggle">Toggle all</text>
+      <text wx:if="{{ leftCnt }}"> {{ leftCnt }} {{ leftCnt > 1 ? 'items' : 'item' }} left</text>
+      <text bindtap="clear">Clear comleted</text>
+    </view>
+  </block>
+  
+</view>
